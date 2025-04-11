@@ -1,6 +1,8 @@
-import 'package:coc_bases/Data/builderhall_data';
+import 'package:coc_bases/Provider/provider.dart';
 import 'package:coc_bases/Utils/app_colors.dart';
+import 'package:coc_bases/Utils/base_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BuilderhallBasesScreen extends StatefulWidget {
   const BuilderhallBasesScreen({super.key});
@@ -12,8 +14,11 @@ class BuilderhallBasesScreen extends StatefulWidget {
 class _BuilderhallBasesScreenState extends State<BuilderhallBasesScreen> {
   @override
   Widget build(BuildContext context) {
+    final builderhalls = Provider.of<BuilderhallProvider>(context).builderhalls;
+
     Size mq = MediaQuery.of(context).size;
     return Scaffold(
+      drawer: BaseDrawer(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
@@ -21,30 +26,34 @@ class _BuilderhallBasesScreenState extends State<BuilderhallBasesScreen> {
         title: Image(
           height: mq.height * 1,
           width: mq.width * 0.6,
-          image: AssetImage("assets/appbar.png"),
+          image: const AssetImage("assets/appbar.png"),
         ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10),
-            child: Container(
-              width: mq.width * 0.15,
-              height: 50.0,
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(8),
-                color: AppColors.green,
-              ),
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.menu),
-                color: Colors.white,
-                iconSize: 30,
+            child: Builder(
+              builder: (context) => Container(
+                width: mq.width * 0.15,
+                height: 50.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(8),
+                  color: AppColors.green,
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  icon: const Icon(Icons.menu),
+                  color: Colors.white,
+                  iconSize: 30,
+                ),
               ),
             ),
-          )
+          ),
         ],
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(1.0),
+          preferredSize: const Size.fromHeight(1.0),
           child: Container(
             color: AppColors.green,
             height: 2.0,
@@ -63,10 +72,10 @@ class _BuilderhallBasesScreenState extends State<BuilderhallBasesScreen> {
                   height: 40,
                   width: double.infinity,
                   color: AppColors.green,
-                  child: Align(
+                  child: const Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
+                      padding: EdgeInsets.only(left: 10),
                       child: Text(
                         "Builder Hall Bases",
                         style: TextStyle(
@@ -97,9 +106,9 @@ class _BuilderhallBasesScreenState extends State<BuilderhallBasesScreen> {
                   mainAxisSpacing: 10,
                   childAspectRatio: 0.85,
                 ),
-                itemCount: builderHalls.length,
+                itemCount: builderhalls.length,
                 itemBuilder: (context, index) {
-                  final th = builderHalls[index];
+                  final bh = builderhalls[index];
                   return Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
@@ -115,7 +124,7 @@ class _BuilderhallBasesScreenState extends State<BuilderhallBasesScreen> {
                               topRight: Radius.circular(12),
                             ),
                             child: Image.asset(
-                              th['image'],
+                              bh['image'],
                               width: double.infinity,
                               fit: BoxFit.fitHeight,
                             ),
@@ -135,7 +144,7 @@ class _BuilderhallBasesScreenState extends State<BuilderhallBasesScreen> {
                               ),
                             ),
                             child: Text(
-                              th['title'],
+                              bh['title'],
                               style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,

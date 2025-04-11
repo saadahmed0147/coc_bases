@@ -1,6 +1,9 @@
+import 'package:coc_bases/Provider/provider.dart';
 import 'package:coc_bases/Utils/app_colors.dart';
+import 'package:coc_bases/Utils/appbar.dart';
+import 'package:coc_bases/Utils/base_drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:coc_bases/Data/townhall_data.dart';
+import 'package:provider/provider.dart';
 
 class TownhallBasesScreen extends StatefulWidget {
   const TownhallBasesScreen({super.key});
@@ -13,44 +16,10 @@ class _TownhallBasesScreenState extends State<TownhallBasesScreen> {
   @override
   Widget build(BuildContext context) {
     Size mq = MediaQuery.of(context).size;
+    final townhalls = Provider.of<TownhallProvider>(context).townhalls;
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        elevation: 10,
-        title: Image(
-          height: mq.height * 1,
-          width: mq.width * 0.6,
-          image: AssetImage("assets/appbar.png"),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: Container(
-              width: mq.width * 0.15,
-              height: 50.0,
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(8),
-                color: AppColors.green,
-              ),
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.menu),
-                color: Colors.white,
-                iconSize: 30,
-              ),
-            ),
-          )
-        ],
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(1.0),
-          child: Container(
-            color: AppColors.green,
-            height: 2.0,
-          ),
-        ),
-      ),
+      drawer: BaseDrawer(),
+      appBar: CustomAppbar(),
       body: Column(
         children: [
           Padding(
@@ -63,10 +32,10 @@ class _TownhallBasesScreenState extends State<TownhallBasesScreen> {
                   height: 40,
                   width: double.infinity,
                   color: AppColors.green,
-                  child: Align(
+                  child: const Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
+                      padding: EdgeInsets.only(left: 10),
                       child: Text(
                         "Town Hall Bases",
                         style: TextStyle(
@@ -77,9 +46,7 @@ class _TownhallBasesScreenState extends State<TownhallBasesScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 2,
-                ),
+                const SizedBox(height: 2),
                 Container(
                   height: 2,
                   width: double.infinity,
@@ -91,9 +58,9 @@ class _TownhallBasesScreenState extends State<TownhallBasesScreen> {
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.all(10),
-              itemCount: townHalls.length,
+              itemCount: townhalls.length,
               itemBuilder: (context, index) {
-                final th = townHalls[index];
+                final th = townhalls[index];
                 return Container(
                   margin: const EdgeInsets.symmetric(vertical: 8),
                   decoration: BoxDecoration(
@@ -114,8 +81,7 @@ class _TownhallBasesScreenState extends State<TownhallBasesScreen> {
                       const SizedBox(width: 12),
                       Expanded(
                         child: Container(
-                          // height: mq.height * 0.15,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius: BorderRadius.horizontal(
                                 right: Radius.circular(11)),
                             image: DecorationImage(
@@ -127,9 +93,10 @@ class _TownhallBasesScreenState extends State<TownhallBasesScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 8),
                                 child: Text(
-                                  " " + th['title'],
+                                  "${th['title']}",
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
@@ -177,10 +144,10 @@ class _TownhallBasesScreenState extends State<TownhallBasesScreen> {
         onPressed: () {},
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
-          padding: const EdgeInsets.symmetric(
-            horizontal: 5,
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4),
           ),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         ),
         child: Text(
           text,
