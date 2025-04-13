@@ -13,6 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(Duration(milliseconds: 1500), () {
+      // ignore: use_build_context_synchronously
       Navigator.pushReplacementNamed(context, RouteNames.homeScreen);
     });
   }

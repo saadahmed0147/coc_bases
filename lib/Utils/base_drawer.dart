@@ -1,3 +1,6 @@
+import 'package:coc_bases/Model/builderhall_model.dart';
+import 'package:coc_bases/Model/townhall_model.dart';
+import 'package:coc_bases/Routes/routes_names.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../Provider/provider.dart';
@@ -7,121 +10,187 @@ class BaseDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get data from the provider
     final townhalls = Provider.of<TownhallProvider>(context).townhalls;
     final builderhalls = Provider.of<BuilderhallProvider>(context).builderhalls;
 
+    // Map the townhalls and builderhalls data to models
+    final List<TownhallModel> townhallModels = townhalls
+        .map<TownhallModel>((item) => TownhallModel.fromMap(item))
+        .toList();
+    final List<BuilderModel> builderhallModels = builderhalls
+        .map<BuilderModel>((item) => BuilderModel.fromJson(item))
+        .toList();
+
     return Drawer(
       child: Container(
-        color: const Color(0xFFd0f3ef),
-        child: Column(
-          children: [
-            const SizedBox(height: 40),
-            const Text(
-              'Base Layouts',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
-            ),
-            const Divider(thickness: 2, color: Colors.teal),
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    GridView.count(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      childAspectRatio: 3,
-                      children: townhalls.map((th) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                            // Add filter logic if needed
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.teal, width: 1),
-                            ),
-                            padding: const EdgeInsets.all(8),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  th['image'],
-                                  width: 50,
-                                  height: 40,
-                                ),
-                                const SizedBox(height: 5),
-                                Text(
-                                  th['baseNumber'],
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                    const SizedBox(height: 10),
-                    GridView.count(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      childAspectRatio: 3,
-                      children: builderhalls.map((bh) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                            // Add filter logic if needed
-                          },
-                          child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                border:
-                                    Border.all(color: Colors.teal, width: 1),
-                              ),
-                              padding: const EdgeInsets.all(8),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    bh['image'],
-                                    width: 50,
-                                    height: 40,
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    bh['baseNumber'],
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              )),
-                        );
-                      }).toList(),
-                    ),
-                  ],
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFFd0f3ef), Color(0xFFb2e4dd)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: SafeArea(
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              const Text(
+                'Base Layouts',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.teal,
+                  letterSpacing: 1.2,
                 ),
               ),
-            ),
-          ],
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Divider(
+                  thickness: 2,
+                  color: Colors.teal,
+                  indent: 30,
+                  endIndent: 30,
+                ),
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Town Halls',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      // Grid for Townhalls
+                      GridView.count(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 12,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        childAspectRatio: 3.2,
+                        children: townhallModels.map((item) {
+                          return Material(
+                            elevation: 2,
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(12),
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  RouteNames.townhallLayoutScreen,
+                                  arguments:
+                                      item, // Pass the entire builderhall item as argument
+                                );
+                              },
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8),
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      item.image, // Access image from the TownhallModel
+                                      width: 45,
+                                      height: 40,
+                                      fit: BoxFit.contain,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: Text(
+                                        item.baseNumber, // Access baseNumber from the TownhallModel
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 15,
+                                          color: Colors.teal,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                      const SizedBox(height: 20),
+                      const Text(
+                        'Builder Halls',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      // Grid for Builderhalls
+                      GridView.count(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 12,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        childAspectRatio: 3.2,
+                        children: builderhallModels.map((item) {
+                          return Material(
+                            elevation: 2,
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(12),
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  RouteNames.builderhallLayoutScreen,
+                                  arguments:
+                                      item, // Pass the entire builderhall item as argument
+                                );
+                              },
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8),
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      item.image, // Access image from the BuilderModel
+                                      width: 45,
+                                      height: 40,
+                                      fit: BoxFit.contain,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: Text(
+                                        item.baseNumber, // Access baseNumber from the BuilderModel
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 15,
+                                          color: Colors.teal,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:coc_bases/Routes/routes_names.dart';
 import 'package:coc_bases/Utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -12,10 +13,15 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       elevation: 10,
-      title: Image(
-        height: mq.height * 0.1,
-        width: mq.width * 0.6,
-        image: const AssetImage("assets/appbar.png"),
+      title: InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, RouteNames.homeScreen);
+        },
+        child: Image(
+          height: mq.height * 0.1,
+          width: mq.width * 0.6,
+          image: const AssetImage("assets/appbar.png"),
+        ),
       ),
       actions: [
         Padding(

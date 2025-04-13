@@ -1,9 +1,7 @@
-import 'package:coc_bases/Provider/provider.dart';
 import 'package:coc_bases/Routes/routes_names.dart';
 import 'package:coc_bases/Utils/animated_banner.dart';
 import 'package:coc_bases/Utils/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,10 +15,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     Size mq = MediaQuery.of(context).size;
 
-    final provider = Provider.of<AppProvider>(context, listen: true);
-
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         elevation: 10,
         title: Center(

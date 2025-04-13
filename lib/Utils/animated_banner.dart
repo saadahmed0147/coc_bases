@@ -8,6 +8,7 @@ class AnimatedClickableBanner extends StatefulWidget {
   final VoidCallback onTap;
 
   const AnimatedClickableBanner({
+    super.key,
     required this.height,
     required this.image,
     required this.onTap,

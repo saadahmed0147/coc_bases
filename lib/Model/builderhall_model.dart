@@ -22,24 +22,24 @@ class Layout {
   }
 }
 
-class BuilderHall {
+class BuilderModel {
   final String title;
   final String image;
   final String baseNumber;
   final List<Layout> layouts;
 
-  BuilderHall({
+  BuilderModel({
     required this.title,
     required this.image,
     required this.baseNumber,
     required this.layouts,
   });
 
-  factory BuilderHall.fromJson(Map<String, dynamic> json) {
+  factory BuilderModel.fromJson(Map<String, dynamic> json) {
     var list = json['layouts'] as List;
     List<Layout> layoutList = list.map((i) => Layout.fromJson(i)).toList();
 
-    return BuilderHall(
+    return BuilderModel(
       title: json['title'],
       image: json['image'],
       baseNumber: json['baseNumber'],
