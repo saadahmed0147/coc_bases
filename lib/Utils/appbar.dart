@@ -28,8 +28,8 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
           padding: const EdgeInsets.only(right: 10),
           child: Builder(
             builder: (context) => Container(
-              width: mq.width * 0.15,
-              height: 50.0,
+              width: mq.width * 0.12,
+              height: 40.0,
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(8),
@@ -41,7 +41,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                 },
                 icon: const Icon(Icons.menu),
                 color: Colors.white,
-                iconSize: 30,
+                iconSize: 25,
               ),
             ),
           ),
@@ -58,5 +58,5 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(80);
+  Size get preferredSize => const Size.fromHeight(50);
 }

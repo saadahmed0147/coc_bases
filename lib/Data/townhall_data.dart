@@ -1,6 +1,6 @@
 final List<Map<String, dynamic>> townHalls = const [
   {
-    'title': 'Best TH17 Bases Townhall 17',
+    'title': 'Townhall 17 Bases',
     'image': 'assets/townhall/th17.png',
     'baseNumber': 'TH17',
     'layouts': [
@@ -28,7 +28,7 @@ final List<Map<String, dynamic>> townHalls = const [
     ]
   },
   {
-    'title': 'Best TH16 Bases Townhall 16',
+    'title': 'Townhall 16 Bases',
     'image': 'assets/townhall/th16.png',
     'baseNumber': 'TH16',
     'layouts': [
@@ -56,7 +56,7 @@ final List<Map<String, dynamic>> townHalls = const [
     ]
   },
   {
-    'title': 'Best TH15 Bases Townhall 15',
+    'title': 'Townhall 15 Bases',
     'image': 'assets/townhall/th15.png',
     'baseNumber': 'TH15',
     'layouts': [
@@ -84,7 +84,7 @@ final List<Map<String, dynamic>> townHalls = const [
     ]
   },
   {
-    'title': 'Best TH14 Bases Townhall 14',
+    'title': 'Townhall 14 Bases',
     'image': 'assets/townhall/th14.png',
     'baseNumber': 'TH14',
     'layouts': [
@@ -112,7 +112,7 @@ final List<Map<String, dynamic>> townHalls = const [
     ]
   },
   {
-    'title': 'Best TH13 Bases Townhall 13',
+    'title': 'Townhall 13 Bases',
     'image': 'assets/townhall/th13.png',
     'baseNumber': 'TH13',
     'layouts': [
@@ -140,7 +140,7 @@ final List<Map<String, dynamic>> townHalls = const [
     ]
   },
   {
-    'title': 'Best TH12 Bases Townhall 12',
+    'title': 'Townhall 12 Bases',
     'image': 'assets/townhall/th12.png',
     'baseNumber': 'TH12',
     'layouts': [
@@ -168,7 +168,7 @@ final List<Map<String, dynamic>> townHalls = const [
     ]
   },
   {
-    'title': 'Best TH11 Bases Townhall 11',
+    'title': 'Townhall 11 Bases',
     'image': 'assets/townhall/th11.png',
     'baseNumber': 'TH11',
     'layouts': [
@@ -196,7 +196,7 @@ final List<Map<String, dynamic>> townHalls = const [
     ]
   },
   {
-    'title': 'Best TH10 Bases Townhall 10',
+    'title': 'Townhall 10 Bases',
     'image': 'assets/townhall/th10.png',
     'baseNumber': 'TH10',
     'layouts': [
@@ -224,7 +224,7 @@ final List<Map<String, dynamic>> townHalls = const [
     ]
   },
   {
-    'title': 'Best TH9 Bases Townhall 9',
+    'title': 'Townhall 9 Bases',
     'image': 'assets/townhall/th9.png',
     'baseNumber': 'TH9',
     'layouts': [
@@ -252,7 +252,7 @@ final List<Map<String, dynamic>> townHalls = const [
     ]
   },
   {
-    'title': 'Best TH8 Bases Townhall 8',
+    'title': 'Townhall 8 Bases',
     'image': 'assets/townhall/th8.png',
     'baseNumber': 'TH8',
     'layouts': [
@@ -280,7 +280,7 @@ final List<Map<String, dynamic>> townHalls = const [
     ]
   },
   {
-    'title': 'Best TH7 Bases Townhall 7',
+    'title': 'Townhall 7 Bases',
     'image': 'assets/townhall/th7.png',
     'baseNumber': 'TH7',
     'layouts': [
@@ -308,7 +308,7 @@ final List<Map<String, dynamic>> townHalls = const [
     ]
   },
   {
-    'title': 'Best TH6 Bases Townhall 6',
+    'title': 'Townhall 6 Bases',
     'image': 'assets/townhall/th6.png',
     'baseNumber': 'TH6',
     'layouts': [
@@ -336,7 +336,7 @@ final List<Map<String, dynamic>> townHalls = const [
     ]
   },
   {
-    'title': 'Best TH5 Bases Townhall 5',
+    'title': 'Townhall 5 Bases',
     'image': 'assets/townhall/th5.png',
     'baseNumber': 'TH5',
     'layouts': [
@@ -364,7 +364,7 @@ final List<Map<String, dynamic>> townHalls = const [
     ]
   },
   {
-    'title': 'Best TH4 Bases Townhall 4',
+    'title': 'Townhall 4 Bases',
     'image': 'assets/townhall/th4.png',
     'baseNumber': 'TH4',
     'layouts': [

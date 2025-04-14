@@ -38,7 +38,7 @@ class BaseDrawer extends StatelessWidget {
               const Text(
                 'Base Layouts',
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Colors.teal,
                   letterSpacing: 1.2,
@@ -63,7 +63,7 @@ class BaseDrawer extends StatelessWidget {
                       const Text(
                         'Town Halls',
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 15,
                           fontWeight: FontWeight.w600,
                           color: Colors.black87,
                         ),
@@ -76,7 +76,7 @@ class BaseDrawer extends StatelessWidget {
                         mainAxisSpacing: 12,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        childAspectRatio: 3.2,
+                        childAspectRatio: 3.8,
                         children: townhallModels.map((item) {
                           return Material(
                             elevation: 2,
@@ -99,17 +99,16 @@ class BaseDrawer extends StatelessWidget {
                                   children: [
                                     Image.asset(
                                       item.image, // Access image from the TownhallModel
-                                      width: 45,
-                                      height: 40,
+                                      width: 35,
+                                      height: 35,
                                       fit: BoxFit.contain,
                                     ),
-                                    const SizedBox(width: 10),
                                     Expanded(
                                       child: Text(
                                         item.baseNumber, // Access baseNumber from the TownhallModel
                                         style: const TextStyle(
                                           fontWeight: FontWeight.w600,
-                                          fontSize: 15,
+                                          fontSize: 12,
                                           color: Colors.teal,
                                         ),
                                         textAlign: TextAlign.center,
@@ -126,7 +125,7 @@ class BaseDrawer extends StatelessWidget {
                       const Text(
                         'Builder Halls',
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 15,
                           fontWeight: FontWeight.w600,
                           color: Colors.black87,
                         ),
@@ -139,7 +138,7 @@ class BaseDrawer extends StatelessWidget {
                         mainAxisSpacing: 12,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        childAspectRatio: 3.2,
+                        childAspectRatio: 3.8,
                         children: builderhallModels.map((item) {
                           return Material(
                             elevation: 2,
@@ -162,17 +161,16 @@ class BaseDrawer extends StatelessWidget {
                                   children: [
                                     Image.asset(
                                       item.image, // Access image from the BuilderModel
-                                      width: 45,
-                                      height: 40,
+                                      width: 35,
+                                      height: 35,
                                       fit: BoxFit.contain,
                                     ),
-                                    const SizedBox(width: 10),
                                     Expanded(
                                       child: Text(
                                         item.baseNumber, // Access baseNumber from the BuilderModel
                                         style: const TextStyle(
                                           fontWeight: FontWeight.w600,
-                                          fontSize: 15,
+                                          fontSize: 12,
                                           color: Colors.teal,
                                         ),
                                         textAlign: TextAlign.center,

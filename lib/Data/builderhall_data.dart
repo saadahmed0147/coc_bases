@@ -1,6 +1,6 @@
 final List<Map<String, dynamic>> builderHalls = const [
   {
-    'title': 'Best Builderhall BH10\nBases BH10',
+    'title': 'Builderhall 10 Bases',
     'image': 'assets/builderhall/bh10.png',
     'baseNumber': 'BH10',
     'layouts': [
@@ -25,7 +25,7 @@ final List<Map<String, dynamic>> builderHalls = const [
     ],
   },
   {
-    'title': 'Best Builderhall BH9\nBases BH9',
+    'title': 'Builderhall 9 Bases',
     'image': 'assets/builderhall/bh9.png',
     'baseNumber': 'BH09',
     'layouts': [
@@ -50,7 +50,7 @@ final List<Map<String, dynamic>> builderHalls = const [
     ],
   },
   {
-    'title': 'Best Builderhall BH8\nBases BH8',
+    'title': 'Builderhall 8 Bases',
     'image': 'assets/builderhall/bh8.png',
     'baseNumber': 'BH08',
     'layouts': [
@@ -75,7 +75,7 @@ final List<Map<String, dynamic>> builderHalls = const [
     ],
   },
   {
-    'title': 'Best Builderhall BH7\nBases BH7',
+    'title': 'Builderhall 7 Bases',
     'image': 'assets/builderhall/bh7.png',
     'baseNumber': 'BH07',
     'layouts': [
@@ -100,7 +100,7 @@ final List<Map<String, dynamic>> builderHalls = const [
     ],
   },
   {
-    'title': 'Best Builderhall BH6\nBases BH6',
+    'title': 'Builderhall 6 Bases',
     'image': 'assets/builderhall/bh6.png',
     'baseNumber': 'BH06',
     'layouts': [
@@ -125,7 +125,7 @@ final List<Map<String, dynamic>> builderHalls = const [
     ],
   },
   {
-    'title': 'Best Builderhall BH5\nBases BH5',
+    'title': 'Builderhall 5 Bases',
     'image': 'assets/builderhall/bh5.png',
     'baseNumber': 'BH05',
     'layouts': [
@@ -150,7 +150,7 @@ final List<Map<String, dynamic>> builderHalls = const [
     ],
   },
   {
-    'title': 'Best Builderhall BH4\nBases BH4',
+    'title': 'Builderhall 4 Bases',
     'image': 'assets/builderhall/bh4.png',
     'baseNumber': 'BH04',
     'layouts': [
