@@ -1,16 +1,19 @@
 class Layout {
   final String image;
   final String link;
+  final List<String> categories; // <-- NEW FIELD
 
   Layout({
     required this.image,
     required this.link,
+    required this.categories,
   });
 
   factory Layout.fromJson(Map<String, dynamic> json) {
     return Layout(
       image: json['image'],
       link: json['link'],
+      categories: List<String>.from(json['categories'] ?? []),
     );
   }
 
@@ -18,6 +21,7 @@ class Layout {
     return {
       'image': image,
       'link': link,
+      'categories': categories,
     };
   }
 }
@@ -36,8 +40,8 @@ class BuilderModel {
   });
 
   factory BuilderModel.fromJson(Map<String, dynamic> json) {
-    var list = json['layouts'] as List;
-    List<Layout> layoutList = list.map((i) => Layout.fromJson(i)).toList();
+    var layoutList =
+        (json['layouts'] as List).map((i) => Layout.fromJson(i)).toList();
 
     return BuilderModel(
       title: json['title'],
