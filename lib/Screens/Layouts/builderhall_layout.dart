@@ -88,23 +88,23 @@ class BuilderhallLayoutScreen extends StatelessWidget {
                       child: Card(
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
-                          child: Image.network(
-                            layout.image,
-                            fit: BoxFit.fill,
-                            loadingBuilder: (context, child, loadingProgress) {
-                              if (loadingProgress == null) return child;
-                              return Center(
-                                child: Padding(
-                                  padding: EdgeInsets.all(20.0),
-                                  child: CircularProgressIndicator(
-                                    color: AppColors.green,
-                                  ),
+                          child: Image.network(layout.image, fit: BoxFit.fill,
+                              loadingBuilder:
+                                  (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return Center(
+                              child: Padding(
+                                padding: EdgeInsets.all(20.0),
+                                child: CircularProgressIndicator(
+                                  color: AppColors.green,
                                 ),
-                              );
-                            },
-                            errorBuilder: (context, error, stackTrace) =>
-                                const Icon(Icons.error),
-                          ),
+                              ),
+                            );
+                          }, errorBuilder: (context, error, stackTrace) {
+                            print(error);
+                            print(stackTrace);
+                            return const Icon(Icons.error);
+                          }),
                         ),
                       ),
                     ),
