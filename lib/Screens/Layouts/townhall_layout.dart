@@ -10,8 +10,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 class TownhallLayoutScreen extends StatefulWidget {
   final TownhallModel hall;
+  final String? selectedCategory;
 
-  const TownhallLayoutScreen({super.key, required this.hall});
+  const TownhallLayoutScreen(
+      {super.key, required this.hall, this.selectedCategory});
 
   @override
   State<TownhallLayoutScreen> createState() => _TownhallLayoutScreenState();
@@ -19,19 +21,13 @@ class TownhallLayoutScreen extends StatefulWidget {
 
 class _TownhallLayoutScreenState extends State<TownhallLayoutScreen> {
   String? selectedFilter;
-
-  final List<String> predefinedCategories = [
-    'CWL/War Bases',
-    'Farming Bases',
-    'Funny Bases',
-    'Hybrid Bases',
-    'Anti 2 Stars Bases',
-    'Anti 3 Stars Bases',
-    'Anti Air/Anti Electro Bases',
-    'Anti Trophy Bases',
-  ];
-
-  List<String> getAllCategories() => predefinedCategories;
+  late String? selectedCategory;
+  @override
+  void initState() {
+    super.initState();
+    selectedCategory = widget.selectedCategory;
+    selectedFilter = selectedCategory;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -175,7 +171,7 @@ class _TownhallLayoutScreenState extends State<TownhallLayoutScreen> {
                       children: [
                         ...filteredLayouts.map((layout) {
                           return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            padding: const EdgeInsets.symmetric(vertical: 0),
                             child: GestureDetector(
                               onTap: () {
                                 Clipboard.setData(
