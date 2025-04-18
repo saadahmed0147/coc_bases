@@ -60,163 +60,155 @@ class _BuilderhallLayoutScreenState extends State<BuilderhallLayoutScreen> {
               child: Column(
                 children: [
                   ...widget.hall.layouts.map((layout) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: GestureDetector(
-                        onTap: () {
-                          Clipboard.setData(ClipboardData(text: layout.link));
-                          launchUrl(
-                            Uri.parse(layout.link),
-                            mode: LaunchMode.platformDefault,
-                          );
-                        },
-                        child: Card(
-                          elevation: 0,
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: mq.height * 0.24,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: Image.network(
-                                    layout.image,
-                                    fit: BoxFit.fill,
-                                    loadingBuilder:
-                                        (context, child, loadingProgress) {
-                                      if (loadingProgress == null) return child;
-                                      return Center(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(20.0),
-                                          child: CircularProgressIndicator(
-                                            color: AppColors.green,
-                                          ),
+                    return GestureDetector(
+                      onTap: () {
+                        Clipboard.setData(ClipboardData(text: layout.link));
+                        launchUrl(
+                          Uri.parse(layout.link),
+                          mode: LaunchMode.platformDefault,
+                        );
+                      },
+                      child: Card(
+                        elevation: 0,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: mq.height * 0.24,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.network(
+                                  layout.image,
+                                  fit: BoxFit.fill,
+                                  loadingBuilder:
+                                      (context, child, loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(20.0),
+                                        child: CircularProgressIndicator(
+                                          color: AppColors.green,
                                         ),
-                                      );
-                                    },
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return const Icon(Icons.error);
-                                    },
-                                  ),
+                                      ),
+                                    );
+                                  },
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return const Icon(Icons.error);
+                                  },
                                 ),
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        GestureDetector(
-                                          onTap: () {
-                                            Clipboard.setData(ClipboardData(
-                                                text: layout.link));
-                                            launchUrl(
-                                              Uri.parse(layout.link),
-                                              mode: LaunchMode.platformDefault,
-                                            );
-                                          },
-                                          child: Chip(
-                                            label: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 10),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Icon(
-                                                    Icons.download_sharp,
-                                                    size: 17,
-                                                    color: Colors.white,
-                                                  ),
-                                                  Text(
-                                                    '  Copy Base',
-                                                    style: TextStyle(
-                                                        fontSize: 10,
-                                                        color: Colors.white),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            backgroundColor: AppColors.green,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          Clipboard.setData(
+                                              ClipboardData(text: layout.link));
+                                          launchUrl(
+                                            Uri.parse(layout.link),
+                                            mode: LaunchMode.platformDefault,
+                                          );
+                                        },
+                                        child: Chip(
+                                          label: Padding(
                                             padding: const EdgeInsets.symmetric(
-                                                horizontal: 6, vertical: 0),
-                                            materialTapTargetSize:
-                                                MaterialTapTargetSize
-                                                    .shrinkWrap,
-                                            visualDensity: const VisualDensity(
-                                                horizontal: -2, vertical: -2),
-                                          ),
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            Share.share(layout.link,
-                                                subject:
-                                                    'Check out this COC Layout!');
-                                          },
-                                          child: Chip(
-                                            label: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 10),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Icon(
-                                                    Icons.share,
-                                                    size: 15,
-                                                    color: AppColors.green,
-                                                  ),
-                                                  Text(
-                                                    '  Share Layout',
-                                                    style:
-                                                        TextStyle(fontSize: 10),
-                                                  ),
-                                                ],
-                                              ),
+                                                vertical: 10),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.download_sharp,
+                                                  size: 17,
+                                                  color: Colors.white,
+                                                ),
+                                                Text(
+                                                  '  Copy Base',
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      color: Colors.white),
+                                                ),
+                                              ],
                                             ),
-                                            backgroundColor:
-                                                const Color(0xFFd0f3ef),
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 6, vertical: 0),
-                                            materialTapTargetSize:
-                                                MaterialTapTargetSize
-                                                    .shrinkWrap,
-                                            visualDensity: const VisualDensity(
-                                                horizontal: -2, vertical: -2),
                                           ),
+                                          backgroundColor: AppColors.green,
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 6, vertical: 0),
+                                          materialTapTargetSize:
+                                              MaterialTapTargetSize.shrinkWrap,
+                                          visualDensity: const VisualDensity(
+                                              horizontal: -2, vertical: -2),
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    child: Wrap(
-                                      children:
-                                          layout.categories.map((category) {
-                                        return Text(
-                                          "#$category  ",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 10,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Share.share(layout.link,
+                                              subject:
+                                                  'Check out this COC Layout!');
+                                        },
+                                        child: Chip(
+                                          label: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.share,
+                                                  size: 15,
+                                                  color: AppColors.green,
+                                                ),
+                                                Text(
+                                                  '  Share Layout',
+                                                  style:
+                                                      TextStyle(fontSize: 10),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        );
-                                      }).toList(),
-                                    ),
+                                          backgroundColor:
+                                              const Color(0xFFd0f3ef),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 6, vertical: 0),
+                                          materialTapTargetSize:
+                                              MaterialTapTargetSize.shrinkWrap,
+                                          visualDensity: const VisualDensity(
+                                              horizontal: -2, vertical: -2),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              )
-                            ],
-                          ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: Wrap(
+                                    children: layout.categories.map((category) {
+                                      return Text(
+                                        "#$category  ",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 10,
+                                        ),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
                         ),
                       ),
                     );
