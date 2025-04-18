@@ -9,7 +9,7 @@ final List<Map<String, dynamic>> townHalls = const [
             'https://bases-coc.com/wp-content/uploads/2024/11/Top-Farming-Base-TH17-with-Link-Hybrid-Anti-Air-Anti-2-stars-Anti-3-stars-Layout-Clash-of-Clans-01.webp',
         'link':
             'https://link.clashofclans.com/en?action=OpenLayout&id=TH17%3AHV%3AAAAAUAAAAAHUoMh1qDHFf8Uk_RUy_MY9',
-        'categories': ['Anti Air', 'Farming'],
+        'categories': ['Anti air', 'Farming'],
       },
       {
         'image':
@@ -23,7 +23,7 @@ final List<Map<String, dynamic>> townHalls = const [
             'https://bases-coc.com/wp-content/uploads/2024/11/Top-Anti-3-stars-Base-TH17-with-Link-Legend-League-Anti-Air-Layout-Clash-of-Clans-03.webp',
         'link':
             'https://link.clashofclans.com/en?action=OpenLayout&id=TH17%3AHV%3AAAAAUAAAAAHUoEEQp00DXo7wpRLq9WxE',
-        'categories': ['Anti 2 star', 'Anti Air', 'Anti trophy'],
+        'categories': ['Anti 2 star', 'Anti air', 'Anti trophy'],
       },
     ]
   },
