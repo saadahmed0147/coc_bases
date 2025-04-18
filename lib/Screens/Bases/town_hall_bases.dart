@@ -30,11 +30,11 @@ class _TownhallBasesScreenState extends State<TownhallBasesScreen> {
     return Scaffold(
       drawer: BaseDrawer(),
       appBar: CustomAppbar(),
-      body: ListView(
+      body: Column(
         children: [
           // Header section
           Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: Column(
               children: [
                 Container(
@@ -70,88 +70,91 @@ class _TownhallBasesScreenState extends State<TownhallBasesScreen> {
             ),
           ),
 
-          // Dynamic list of townhalls
-          ...townhalls.map((townhall) {
-            return Padding(
+          // Townhalls list (wrapped in Expanded)
+          Expanded(
+            child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    RouteNames.townhallLayoutScreen,
-                    arguments: townhall,
-                  );
-                },
-                child: Container(
-                  margin: const EdgeInsets.symmetric(vertical: 8),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(width: 1, color: AppColors.green),
-                  ),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: mq.width * 0.3,
-                        height: mq.height * 0.14,
-                        child: Image.asset(
-                          townhall.image,
-                          fit: BoxFit.fitHeight,
+              itemCount: townhalls.length,
+              itemBuilder: (context, index) {
+                final townhall = townhalls[index];
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      RouteNames.townhallLayoutScreen,
+                      arguments: townhall,
+                    );
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(width: 1, color: AppColors.green),
+                    ),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: mq.width * 0.3,
+                          height: mq.height * 0.14,
+                          child: Image.asset(
+                            townhall.image,
+                            fit: BoxFit.fitHeight,
+                          ),
                         ),
-                      ),
-                      SizedBox(width: mq.width * 0.02),
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.horizontal(
-                                right: Radius.circular(11)),
-                            image: const DecorationImage(
-                              image: AssetImage('assets/townhall-card.png'),
-                              fit: BoxFit.cover,
+                        SizedBox(width: mq.width * 0.02),
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.horizontal(
+                                  right: Radius.circular(11)),
+                              image: const DecorationImage(
+                                image: AssetImage('assets/townhall-card.png'),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                                  child: Text(
+                                    townhall.title,
+                                    style: const TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Center(
+                                    child: Wrap(
+                                      spacing: 8,
+                                      runSpacing: 8,
+                                      children: [
+                                        baseButton('War/CWL Bases'),
+                                        baseButton('Farming Bases'),
+                                        baseButton('Hybrid Bases'),
+                                        baseButton('Funny Bases'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                                child: Text(
-                                  townhall.title,
-                                  style: const TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Center(
-                                  child: Wrap(
-                                    spacing: 8,
-                                    runSpacing: 8,
-                                    children: [
-                                      baseButton('War/CWL Bases'),
-                                      baseButton('Farming Bases'),
-                                      baseButton('Hybrid Bases'),
-                                      baseButton('Funny Bases'),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ),
-            );
-          }).toList(),
+                );
+              },
+            ),
+          ),
 
-          // Footer at bottom of scrollable content
-
+          // Footer section (optional to place inside ListView if scrollable)
           Footer(),
         ],
       ),
