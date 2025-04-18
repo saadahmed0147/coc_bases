@@ -19,24 +19,9 @@ class BuilderhallLayoutScreen extends StatefulWidget {
 }
 
 class _BuilderhallLayoutScreenState extends State<BuilderhallLayoutScreen> {
-  String? selectedFilter;
-
-  List<String> getAllCategories() {
-    final Set<String> categories = {};
-    for (var layout in widget.hall.layouts) {
-      categories.addAll(layout.categories);
-    }
-    return categories.toList();
-  }
-
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context).size;
-    final filteredLayouts = selectedFilter == null
-        ? widget.hall.layouts
-        : widget.hall.layouts
-            .where((layout) => layout.categories.contains(selectedFilter))
-            .toList();
 
     return Scaffold(
       appBar: CustomAppbar(),
@@ -51,62 +36,16 @@ class _BuilderhallLayoutScreenState extends State<BuilderhallLayoutScreen> {
               borderRadius: BorderRadius.circular(12),
               color: Colors.white,
               child: Padding(
-                padding: const EdgeInsets.all(15),
+                padding: const EdgeInsets.all(6),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Title
-                    Row(
-                      children: [
-                        Text(
-                          widget.hall.title,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.green,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    ),
-                    // Filter Dropdown
-                    PopupMenuButton<String>(
-                      onSelected: (value) {
-                        setState(() {
-                          selectedFilter =
-                              value == '[No Filter]' ? null : value;
-                        });
-                      },
-                      itemBuilder: (context) {
-                        final allItems = ['[No Filter]', ...getAllCategories()];
-                        return allItems
-                            .map((item) => PopupMenuItem(
-                                  value: item,
-                                  child: Text(item),
-                                ))
-                            .toList();
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade200,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Row(
-                          children: [
-                            Text(
-                              selectedFilter ?? '[No Filter]',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black87,
-                              ),
-                            ),
-                            Icon(
-                              Icons.arrow_drop_down,
-                              color: AppColors.green,
-                            ),
-                          ],
-                        ),
+                    Text(
+                      widget.hall.title,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.green,
+                        fontSize: 17,
                       ),
                     ),
                   ],
@@ -120,8 +59,7 @@ class _BuilderhallLayoutScreenState extends State<BuilderhallLayoutScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  // Layout list
-                  ...filteredLayouts.map((layout) {
+                  ...widget.hall.layouts.map((layout) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
@@ -137,7 +75,7 @@ class _BuilderhallLayoutScreenState extends State<BuilderhallLayoutScreen> {
                           child: Column(
                             children: [
                               SizedBox(
-                                height: mq.height * 0.35,
+                                height: mq.height * 0.24,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(12),
                                   child: Image.network(
@@ -164,38 +102,14 @@ class _BuilderhallLayoutScreenState extends State<BuilderhallLayoutScreen> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Wrap(
-                                    children: layout.categories.map((category) {
-                                      return Padding(
-                                        padding: const EdgeInsets.all(5),
-                                        child: Chip(
-                                          label: Text(
-                                            "#$category",
-                                            style: TextStyle(
-                                              color: AppColors.green,
-                                              fontSize: 10,
-                                            ),
-                                          ),
-                                          backgroundColor:
-                                              const Color(0xFFd0f3ef),
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 6, vertical: 0),
-                                          materialTapTargetSize:
-                                              MaterialTapTargetSize.shrinkWrap,
-                                          visualDensity: const VisualDensity(
-                                              horizontal: -2, vertical: -2),
-                                        ),
-                                      );
-                                    }).toList(),
-                                  ),
                                   Padding(
-                                    padding: const EdgeInsets.all(12),
+                                    padding: const EdgeInsets.all(6.0),
                                     child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        ElevatedButton.icon(
-                                          onPressed: () {
+                                        GestureDetector(
+                                          onTap: () {
                                             Clipboard.setData(ClipboardData(
                                                 text: layout.link));
                                             launchUrl(
@@ -203,47 +117,100 @@ class _BuilderhallLayoutScreenState extends State<BuilderhallLayoutScreen> {
                                               mode: LaunchMode.platformDefault,
                                             );
                                           },
-                                          icon: const Icon(
-                                            Icons.download_sharp,
-                                            size: 17,
-                                            color: Colors.grey,
-                                          ),
-                                          label: const Text(
-                                            'Copy Base',
-                                            style: TextStyle(fontSize: 10),
-                                          ),
-                                          style: ElevatedButton.styleFrom(
-                                            elevation: 0,
-                                            backgroundColor:
-                                                Colors.grey.shade300,
-                                            foregroundColor: Colors.black,
-                                            shape: const LinearBorder(),
+                                          child: Chip(
+                                            label: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 10),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.download_sharp,
+                                                    size: 17,
+                                                    color: Colors.white,
+                                                  ),
+                                                  Text(
+                                                    '  Copy Base',
+                                                    style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.white),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            backgroundColor: AppColors.green,
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 6, vertical: 0),
+                                            materialTapTargetSize:
+                                                MaterialTapTargetSize
+                                                    .shrinkWrap,
+                                            visualDensity: const VisualDensity(
+                                                horizontal: -2, vertical: -2),
                                           ),
                                         ),
-                                        ElevatedButton.icon(
-                                          onPressed: () {
+                                        GestureDetector(
+                                          onTap: () {
                                             Share.share(layout.link,
                                                 subject:
                                                     'Check out this COC Layout!');
                                           },
-                                          icon: Icon(
-                                            Icons.share,
-                                            size: 15,
-                                            color: AppColors.green,
-                                          ),
-                                          label: const Text(
-                                            'Share Layout',
-                                            style: TextStyle(fontSize: 10),
-                                          ),
-                                          style: ElevatedButton.styleFrom(
-                                            elevation: 0,
+                                          child: Chip(
+                                            label: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 10),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.share,
+                                                    size: 15,
+                                                    color: AppColors.green,
+                                                  ),
+                                                  Text(
+                                                    '  Share Layout',
+                                                    style:
+                                                        TextStyle(fontSize: 10),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                             backgroundColor:
-                                                Colors.grey.shade300,
-                                            foregroundColor: Colors.black,
-                                            shape: const LinearBorder(),
+                                                const Color(0xFFd0f3ef),
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 6, vertical: 0),
+                                            materialTapTargetSize:
+                                                MaterialTapTargetSize
+                                                    .shrinkWrap,
+                                            visualDensity: const VisualDensity(
+                                                horizontal: -2, vertical: -2),
                                           ),
                                         ),
                                       ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: Wrap(
+                                      children:
+                                          layout.categories.map((category) {
+                                        return Text(
+                                          "#$category  ",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 10,
+                                          ),
+                                        );
+                                      }).toList(),
                                     ),
                                   ),
                                 ],
