@@ -1,5 +1,6 @@
 import 'package:coc_bases/Provider/provider.dart';
 import 'package:coc_bases/Routes/routes_names.dart';
+import 'package:coc_bases/Screens/Layouts/townhall_layout.dart';
 import 'package:coc_bases/Utils/app_colors.dart';
 import 'package:coc_bases/Utils/appbar.dart';
 import 'package:coc_bases/Utils/base_drawer.dart';
@@ -134,10 +135,10 @@ class _TownhallBasesScreenState extends State<TownhallBasesScreen> {
                                       spacing: 8,
                                       runSpacing: 8,
                                       children: [
-                                        baseButton('War/CWL Bases'),
-                                        baseButton('Farming Bases'),
-                                        baseButton('Hybrid Bases'),
-                                        baseButton('Funny Bases'),
+                                        baseButton('CWL/War Bases', townhall),
+                                        baseButton('Farming Bases', townhall),
+                                        baseButton('Hybrid Bases', townhall),
+                                        baseButton('Funny Bases', townhall),
                                       ],
                                     ),
                                   ),
@@ -154,21 +155,30 @@ class _TownhallBasesScreenState extends State<TownhallBasesScreen> {
             ),
           ),
 
-          // Footer section (optional to place inside ListView if scrollable)
           Footer(),
         ],
       ),
     );
   }
 
-  Widget baseButton(String text) {
+  Widget baseButton(String text, TownhallModel hall) {
     Size mq = MediaQuery.of(context).size;
+    String selectedCategory = text;
+
     return SizedBox(
       height: mq.height * 0.03,
       width: mq.width * 0.25,
       child: ElevatedButton(
         onPressed: () {
-          // Navigation or filter logic can be added here
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => TownhallLayoutScreen(
+                selectedCategory: selectedCategory,
+                hall: hall,
+              ),
+            ),
+          );
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
